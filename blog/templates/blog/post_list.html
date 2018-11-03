@@ -1,33 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Meher's Blog</title>
-</head>
-<body>
-    <div>
-        <h1><a href="/">Meher's Blog</a></h1>
-    </div>
-    {% for post in posts%}
-        <div>
-            <p>published: {{ post.published_date }}</p>
-            <h1><a href="">{{ post.title }}</a></h1>
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
             <p>{{ post.text|linebreaksbr }}</p>
         </div>
     {% endfor %}
-    <!--<div>
-        <p>published: 14.06.2014, 12:14</p>
-        <h2><a href="">Hello! (First Post)</a></h2>
-        <p>Hello! My name is Meher Mankikar and this is is my first blog! Programming is one of my favorite subjects and I
-        am so excited to be learning Python and Django!</p>
-    </div>
-    <div>
-        <p>published: 14.06.2014, 12:14</p>
-        <h2><a href="">About Me</a></h2>
-        <p>I am a junior at Bridgewater Raritan Highschool. Some of my favorite subjects are math, science, and computer science.
-        I have complete courses in Pre-Algebra, Pre-Calculus, Calculus BC, Chemistry, Biology, Physics, and AP Computer Science.
-        Outside of school, I also play golf and participate in Model UN. </p>
-    </div>-->
-
-
-</body>
-</html>
+{% endblock %}
